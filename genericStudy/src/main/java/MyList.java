@@ -1,22 +1,22 @@
 import java.util.Collection;
 
-public interface MyList {
+public interface MyList<E> {
 
-    void add(Object obj);
+    void add(E obj);
 
-    void addAll(Collection<Object> newColl);
+    void addAll(Collection<E> newColl);
 
-    Object getFirst();
+    E getFirst();
 
-    Object getLast();
+    E getLast();
 
-    Object get(int index);
+    E get(int index);
 
-    Integer indexOf(Object obj);
+    Integer indexOf(E obj);
 
     void remove(int index);
 
-    void set(int index, Object obj);
+    void set(int index, E obj);
 
     Integer size();
 }

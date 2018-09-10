@@ -1,7 +1,7 @@
 import java.util.Arrays;
 import java.util.Collection;
 
-public class MyArrayList implements MyList {
+public class MyArrayList<E extends Comparable<E>> implements MyList {
 
 
     private Object[] elements;
@@ -9,42 +9,51 @@ public class MyArrayList implements MyList {
     private Integer size = 0;
 
 
-    MyArrayList() {
+    public MyArrayList() {
         this.elements = new Object[DEFAULT_CAPACITY];
 
     }
 
+    public MyArrayList(int capacity) {
+        this.elements = new Object[capacity];
+    }
+
+    @Override
     public void add(Object obj) {
         if (size == elements.length) {
             ensureCapacity();
         }
 
-        elements[size++] = obj;
+        elements[size++] = (E) obj;
     }
 
-    public void addAll(Collection<Object> newColl) {
+    @Override
+    public void addAll(Collection newColl) {
         for (Object e :
                 newColl) {
             add(e);
         }
     }
 
-    public Object getFirst() {
-        return elements[0];
+
+    public E getFirst() {
+        return (E) elements[0];
     }
 
-    public Object getLast() {
-        return elements[elements.length - 1];
+    public E getLast() {
+
+        return (E) elements[size - 1];
     }
 
-    public Object get(int index) {
-        return elements[index];
+    public E get(int index) {
+        return (E) elements[index];
     }
 
+    @Override
     public Integer indexOf(Object obj) {
         int number = 0;
         for (Object e : elements) {
-            if (e == obj) {
+            if (e.equals(obj)) {
                 return number;
             }
             number++;
@@ -53,23 +62,25 @@ public class MyArrayList implements MyList {
     }
 
     public void remove(int index) {
-        if(index < elements.length &&  index > 0){
+        if (index < elements.length && index > 0) {
             elements[index] = null;
-        }
-        else
+            size--;
+        } else
             throw new NullPointerException("This index out of the list");
     }
 
+    @Override
     public void set(int index, Object obj) {
-        elements[index]=obj;
+        elements[index] = obj;
     }
 
     public Integer size() {
-        return elements.length;
+        return size;
     }
 
     private void ensureCapacity() {
         int newSize = elements.length * 2;
         elements = Arrays.copyOf(elements, newSize);
     }
+
 }
