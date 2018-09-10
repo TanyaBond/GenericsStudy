@@ -14,6 +14,10 @@ public class myBThree implements myThree {
         return containsNodeRecursive(root, value);
     }
 
+    public void delete(int value) {
+        root = deleteRecursive(root, value);
+    }
+
     private Node addRecursive(Node current, int value) {
         if (current == null) {
             return new Node(value);

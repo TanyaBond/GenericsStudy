@@ -20,10 +20,28 @@ public class myBThreeTest {
 
     @Test
     public void containsNode() {
+
+        myThree bt = createBThree();
+        bt.add(9);
+        assertTrue(bt.containsNode(9));
+        assertFalse(bt.containsNode(23));
     }
+
+    @Test
+    public void delete() {
+        myThree bt = createBThree();
+        bt.add(9);
+        assertTrue(bt.containsNode(9));
+        bt.delete(9);
+        assertFalse(bt.containsNode(9));
+    }
+
+    
 
     private myBThree createBThree() {
         Node root = new Node(1);
         return new myBThree(root);
     }
+
+
 }
