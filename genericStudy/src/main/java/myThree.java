@@ -1,9 +1,9 @@
-public interface myThree {
+public interface myThree<E> {
 
-    void add(int value);
+    void add(E value);
 
-    boolean containsNode(int value);
+    boolean containsNode(E value);
 
-    void delete(int value);
+    void delete(E value);
 
 }

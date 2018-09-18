@@ -36,11 +36,9 @@ public class myBThreeTest {
         assertFalse(bt.containsNode(9));
     }
 
-    
 
     private myBThree createBThree() {
-        Node root = new Node(1);
-        return new myBThree(root);
+        return new myBThree(1);
     }
 
 

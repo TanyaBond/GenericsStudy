@@ -1,36 +1,32 @@
 import java.util.Arrays;
 import java.util.Collection;
 
-public class MyArrayList<E extends Comparable<E>> implements MyList {
+public class MyArrayList<E> implements MyList<E> {
 
 
-    private Object[] elements;
-    private Integer DEFAULT_CAPACITY = 16;
+    private final static Integer DEFAULT_CAPACITY = 16;
+    private E[] elements;
     private Integer size = 0;
 
 
     public MyArrayList() {
-        this.elements = new Object[DEFAULT_CAPACITY];
+        this.elements = (E[]) new Object[DEFAULT_CAPACITY];
 
     }
 
     public MyArrayList(int capacity) {
-        this.elements = new Object[capacity];
+        this.elements = (E[]) new Object[capacity];
     }
 
     @Override
-    public void add(Object obj) {
-        if (size == elements.length) {
-            ensureCapacity();
-        }
-
-        elements[size++] = (E) obj;
+    public void add(E obj) {
+        ensureCapacity();
+        elements[size++] = obj;
     }
 
     @Override
-    public void addAll(Collection newColl) {
-        for (Object e :
-                newColl) {
+    public void addAll(Collection<E> newColl) {
+        for (E e : newColl) {
             add(e);
         }
     }
@@ -58,19 +54,25 @@ public class MyArrayList<E extends Comparable<E>> implements MyList {
             }
             number++;
         }
-        throw new NullPointerException("This element not in the list");
+        return -1;
     }
 
     public void remove(int index) {
-        if (index < elements.length && index > 0) {
-            elements[index] = null;
-            size--;
-        } else
-            throw new NullPointerException("This index out of the list");
+
+        if (index > elements.length && index < 0) {
+            throw new IndexOutOfBoundsException("This index out of the list");
+        }
+        elements[index] = null;
+        size--;
+
     }
 
     @Override
-    public void set(int index, Object obj) {
+    public void set(int index, E obj) {
+        if (index > elements.length && index < 0) {
+            throw new IndexOutOfBoundsException("This index out of the list");
+        }
+
         elements[index] = obj;
     }
 
@@ -79,8 +81,10 @@ public class MyArrayList<E extends Comparable<E>> implements MyList {
     }
 
     private void ensureCapacity() {
-        int newSize = elements.length * 2;
-        elements = Arrays.copyOf(elements, newSize);
+        if (size == elements.length) {
+            int newSize = elements.length * 2;
+            elements = Arrays.copyOf(elements, newSize);
+        }
     }
 
 }
