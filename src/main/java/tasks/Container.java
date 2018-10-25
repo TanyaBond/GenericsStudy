@@ -20,6 +20,10 @@ public class Container<T> implements Iterable<T> {
     }
 
     public T getElement(int index) {
+        if (values.size() > index | index < 0) {
+            throw new IndexOutOfBoundsException();
+        }
+
         return values.get(index);
     }
 

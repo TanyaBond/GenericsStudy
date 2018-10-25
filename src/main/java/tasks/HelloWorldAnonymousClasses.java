@@ -3,8 +3,9 @@ package tasks;
 public class HelloWorldAnonymousClasses {
 
     interface HelloWorld {
-         void greet();
-         void greetSomeone(String someone);
+        void greet();
+
+        void greetSomeone(String someone);
     }
 
     public void sayHello() {
