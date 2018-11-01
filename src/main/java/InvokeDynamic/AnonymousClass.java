@@ -15,6 +15,9 @@ package InvokeDynamic;
  * duck typing == n computer programming is an application of the duck test—"If it walks like a duck and it quacks like a duck,
  * then it must be a duck"—to determine if an object can be used for a particular purpose
  *
+ *
+ * The invoke dynamics instraction is used t o help VM determinate the methid reference at runtime
+ * instead hardwiring it at compile time.
  */
 
 

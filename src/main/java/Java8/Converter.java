@@ -4,3 +4,7 @@ package Java8;
 interface Converter<F, T> {
     T convert(F from);
 }
+
+/**
+ * https://www.geeksforgeeks.org/functional-interfaces-java/
+ */
